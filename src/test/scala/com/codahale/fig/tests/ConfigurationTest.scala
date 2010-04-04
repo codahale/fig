@@ -2,7 +2,7 @@ package com.codahale.fig.tests
 
 import org.scalatest.Spec
 import org.scalatest.matchers.MustMatchers
-import com.codahale.fig.Configuration
+import com.codahale.fig.{ConfigurationException, Configuration}
 
 class ConfigurationTest extends Spec with MustMatchers {
   describe("a configuration file") {
@@ -19,6 +19,15 @@ class ConfigurationTest extends Spec with MustMatchers {
 
     it("can have default values") {
       config("parent.dingo").or("yay") must equal("yay")
+    }
+
+    it("can have required values") {
+      config("parent.child.count").asRequired[Int] must equal(100)
+    }
+
+    it("throws an informative error when a required value is missing") {
+      val thrown = evaluating { config("parent.child.age").asRequired[Int] } must produce [ConfigurationException]
+      thrown.getMessage must equal("int property parent.child.age not found")
     }
   }
 }
