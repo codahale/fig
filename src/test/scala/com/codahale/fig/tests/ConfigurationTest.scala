@@ -1,8 +1,8 @@
-package com.codahale.config.tests
+package com.codahale.fig.tests
 
 import org.scalatest.Spec
 import org.scalatest.matchers.MustMatchers
-import com.codahale.config.Configuration
+import com.codahale.fig.Configuration
 
 class ConfigurationTest extends Spec with MustMatchers {
   describe("a configuration file") {

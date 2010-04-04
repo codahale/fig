@@ -1,4 +1,4 @@
-package com.codahale.config
+package com.codahale.fig
 
 import io.Source
 import java.io.File
