@@ -30,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
 
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.yammer" %% "fig" % "1.0.0" withSources()
+    val fig = "com.codahale" %% "fig" % "1.0.0" withSources()
 
 **Second**, write your config file:
     
