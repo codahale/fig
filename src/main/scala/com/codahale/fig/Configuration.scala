@@ -3,6 +3,7 @@ package com.codahale.fig
 import io.Source
 import java.io.File
 import net.liftweb.json._
+import net.liftweb.json.JsonAST._
 
 /**
  * An exception class thrown when there is a configuration error.
@@ -27,6 +28,10 @@ class Configuration(filename: String) {
       case None => throw new ConfigurationException(
         "%s property %s not found".format(mf.erasure.getSimpleName, path)
       )
+    }
+    def asList[A](implicit mf: Manifest[A]): List[A] = value match {
+      case JField(_, JArray(list)) => list.map { _.extract[A](DefaultFormats, mf) }
+      case other => List()
     }
   }
 

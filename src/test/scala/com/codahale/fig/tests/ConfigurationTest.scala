@@ -29,5 +29,9 @@ class ConfigurationTest extends Spec with MustMatchers {
       val thrown = evaluating { config("parent.child.age").asRequired[Int] } must produce [ConfigurationException]
       thrown.getMessage must equal("int property parent.child.age not found")
     }
+
+    it("has lists of items") {
+      config("parent.child.names").asList[String] must equal(List("One", "Two", "Three"))
+    }
   }
 }
