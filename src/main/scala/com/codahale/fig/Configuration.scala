@@ -20,19 +20,47 @@ class ConfigurationException(message: String) extends Exception(message)
  */
 class Configuration(filename: String) {
   case class Value(path: String, value: JsonAST.JValue) {
+    /**
+     * Returns the value as an instance of type A.
+     */
     def as[A](implicit mf: Manifest[A]) = value.extract[A](DefaultFormats, mf)
+
+    /**
+     * Returns the value as an instance of type Option[A]. If the value exists,
+     * Some(v: A) is returned; otherwise, None.
+     */
     def asOption[A](implicit mf: Manifest[A]) = value.extractOpt[A](DefaultFormats, mf)
+
+    /**
+     * Returns the value as an instance of type A, or if the value does not
+     * exist, the result of the provided function.
+     */
     def or[A](default: => A)(implicit mf: Manifest[A]) = asOption[A](mf).getOrElse(default)
+
+    /**
+     * Returns the value as an instance of type A, or if it cannot be converted,
+     * throws a ConfigurationException with an information error message.
+     */
     def asRequired[A](implicit mf: Manifest[A]) = asOption[A] match {
       case Some(v) => v
       case None => throw new ConfigurationException(
         "%s property %s not found".format(mf.erasure.getSimpleName, path)
       )
     }
-    def asList[A](implicit mf: Manifest[A]): List[A] = value match {
+
+    /**
+     * Returns the value as a instance of List[A], or if the value is not a JSON
+     * array, an empty list.
+     */
+    def asList[A](implicit mf: Manifest[A]) = value match {
       case JField(_, JArray(list)) => list.map { _.extract[A](DefaultFormats, mf) }
       case other => List()
     }
+
+    /**
+     * Returns the value as an instance of Map[String, A], or if the value is
+     * not a simple JSON object, an empty map.
+     */
     def asMap[A](implicit mf: Manifest[A]) = value match {
       case JField(_, o: JObject) =>
         o.obj.map { f => f.name -> f.value.extract[A](DefaultFormats, mf) }.toMap
