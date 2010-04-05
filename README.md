@@ -42,6 +42,7 @@ How To Use
         // But you'll need to escape double-slashes if there's whitespace in
         // front of them.
         "server": "one \/\/ two",
+        "numbers": [1, 2, 3],
         "resource": {
           "name": "Contacts",
           "uri": "/contacts"
@@ -65,6 +66,12 @@ How To Use
     
     // Load a value or a default value.
     var server = config("http.server").or("Fig-Powered")
+    
+    // Load a list of values.
+    val numbers = config("http.numbers").asList[Int]
+    
+    // Or a map of values (key are required to be strings)
+    val properties = config("http.resource").asMap[String]
     
     // Hell, even load a case class.
     case class ResourceConfig(name: String, uri: String)
