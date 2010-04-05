@@ -33,5 +33,9 @@ class ConfigurationTest extends Spec with MustMatchers {
     it("has lists of items") {
       config("parent.child.names").asList[String] must equal(List("One", "Two", "Three"))
     }
+
+    it("has maps of items") {
+      config("parent.child.mapped").asMap[Int] must equal(Map("1" -> 1, "2" -> 2, "3" -> 3))
+    }
   }
 }

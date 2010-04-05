@@ -33,6 +33,11 @@ class Configuration(filename: String) {
       case JField(_, JArray(list)) => list.map { _.extract[A](DefaultFormats, mf) }
       case other => List()
     }
+    def asMap[A](implicit mf: Manifest[A]) = value match {
+      case JField(_, o: JObject) =>
+        o.obj.map { f => f.name -> f.value.extract[A](DefaultFormats, mf) }.toMap
+      case other => Map()
+    }
   }
 
   private val json = JsonParser.parse(Source.fromFile(new File(filename))

@@ -8,7 +8,12 @@
             // your best bet is to just escape 'em.
             "splody-string": "An-a one an-a two an-a \/\/ AUGH DAMNIT",
             "count": 100,
-            "names": ["One", "Two", "Three"]
+            "names": ["One", "Two", "Three"],
+            "mapped": {
+                "1": 1,
+                "2": 2,
+                "3": 3
+            }
         }
     }
 }
