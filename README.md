@@ -28,7 +28,8 @@ How To Use
 ----------
 
 **First**, specify Fig as a dependency:
-
+    
+    val scalaToolsSnapshots = "scala-tools.org Snapshots" at "http://scala-tools.org/repo-snapshots"
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
     val fig = "com.codahale" %% "fig" % "1.0.0" withSources()
 
