@@ -1,0 +1,3 @@
+Moving to RC3:
+
+* Now only compatible with RC3 since liftweb isn't cross-compiled.

@@ -12,7 +12,7 @@ Requirements
 ------------
 
 * Java SE 6
-* Scala 2.8 Beta1
+* Scala 2.8 RC3
 
 
 Why JSON?
@@ -31,7 +31,7 @@ How To Use
     
     val scalaToolsSnapshots = "scala-tools.org Snapshots" at "http://scala-tools.org/repo-snapshots"
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.0.0" withSources()
+    val fig = "com.codahale" %% "fig" % "1.0.1" withSources()
 
 **Second**, write your config file:
     
