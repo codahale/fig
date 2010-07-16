@@ -1,0 +1,3 @@
+Moving to Scala 2.8.0 and Lift 2.1-SNAPSHOT:
+
+* Now only compatible with Scala 2.8.0 (final) and uses Lift 2.1-SNAPSHOT.
