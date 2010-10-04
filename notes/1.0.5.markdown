@@ -1,0 +1,3 @@
+Minor dependency bump:
+
+* Now uses lift-json 2.1 final
