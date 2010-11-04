@@ -1,7 +1,7 @@
 package com.codahale.fig
 
 import io.Source
-import java.io.File
+import java.io.{File, InputStream}
 import net.liftweb.json._
 import net.liftweb.json.JsonAST._
 
@@ -13,12 +13,12 @@ class ConfigurationException(message: String) extends Exception(message)
 /**
  * A JSON-based configuration file. Line comments (i.e., //) are allowed.
  *
- * val config = new Configuration("config.json")
+ * val config = new Configuration("config.json") // or an io.Source or an InputStream
  * config("rabbitmq.queue.name").as[String]
  *
  * @author coda
  */
-class Configuration(filename: String) {
+class Configuration(src: Source) {
   case class Value(path: String, value: JsonAST.JValue) {
     /**
      * Returns the value as an instance of type A.
@@ -68,8 +68,11 @@ class Configuration(filename: String) {
     }
   }
 
-  private val json = JsonParser.parse(Source.fromFile(new File(filename))
-          .mkString.replaceAll("""(^//.*|[\s]+//.*)""", ""))
+  private val json = JsonParser.parse(src.mkString.replaceAll("""(^//.*|[\s]+//.*)""", ""))
+
+  def this(filename: String) = this (Source.fromFile(new File(filename)))
+
+  def this(stream: InputStream) = this (Source.fromInputStream(stream))
 
   /**
    * Given a dot-notation JSON path (e.g., "parent.child.fieldname"), returns
