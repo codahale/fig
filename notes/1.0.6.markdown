@@ -1,0 +1,4 @@
+Some dependency bumps and some added features:
+
+* Now uses lift-json 2.2-M1
+* Create `Configuration` instance from a `Source` or an `InputStream` as well as a filename
