@@ -30,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.0.5" withSources()
+    val fig = "com.codahale" %% "fig" % "1.0.6" withSources()
 
 **Second**, write your config file:
     
@@ -83,5 +83,9 @@ License
 -------
 
 Copyright (c) 2010 Coda Hale
+
+with contributions from
+
+* Bryan J Swift
 
 Published under The MIT License, see LICENSE
