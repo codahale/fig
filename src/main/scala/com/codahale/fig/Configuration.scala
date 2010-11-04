@@ -13,14 +13,12 @@ class ConfigurationException(message: String) extends Exception(message)
 /**
  * A JSON-based configuration file. Line comments (i.e., //) are allowed.
  *
- * val config = new Configuration("config.json")
+ * val config = new Configuration("config.json") // or an io.Source or an InputStream
  * config("rabbitmq.queue.name").as[String]
  *
  * @author coda
  */
 class Configuration(src: Source) {
-  def this(filename: String) = this(Source.fromFile(new File(filename)))
-  def this(stream: InputStream) = this(Source.fromInputStream(stream))
   case class Value(path: String, value: JsonAST.JValue) {
     /**
      * Returns the value as an instance of type A.
@@ -71,6 +69,10 @@ class Configuration(src: Source) {
   }
 
   private val json = JsonParser.parse(src.mkString.replaceAll("""(^//.*|[\s]+//.*)""", ""))
+
+  def this(filename: String) = this (Source.fromFile(new File(filename)))
+
+  def this(stream: InputStream) = this (Source.fromInputStream(stream))
 
   /**
    * Given a dot-notation JSON path (e.g., "parent.child.fieldname"), returns
