@@ -29,7 +29,6 @@ How To Use
 
 **First**, specify Fig as a dependency:
     
-    val scalaToolsSnapshots = "scala-tools.org Snapshots" at "http://scala-tools.org/repo-snapshots"
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
     val fig = "com.codahale" %% "fig" % "1.0.5" withSources()
 
@@ -56,6 +55,8 @@ How To Use
     import com.codahale.fig.Configuration
     
     val config = new Configuration("myapp/config.json")
+
+You can also create a new `Configuration` instance from a `Source` or an `InputStream`.
 
 **Fourth**, read values from it:
     
