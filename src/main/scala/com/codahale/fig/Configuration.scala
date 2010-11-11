@@ -63,7 +63,13 @@ class Configuration(src: Source) {
      */
     def asMap[A](implicit mf: Manifest[A]) = value match {
       case JField(_, o: JObject) =>
-        o.obj.map { f => f.name -> f.value.extract[A](DefaultFormats, mf) }.toMap
+        if (mf.erasure == classOf[JValue]) {
+          o.obj.map { f => f.name -> f.value }.toMap
+        } else {
+          o.obj.map {
+            f => f.name -> f.value.extract[A](DefaultFormats, mf)
+          }.toMap
+        }
       case other => Map()
     }
   }
