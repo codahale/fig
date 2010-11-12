@@ -3,7 +3,6 @@ package com.codahale.fig.tests
 import org.scalatest.Spec
 import org.scalatest.matchers.MustMatchers
 import com.codahale.fig.{ConfigurationException, Configuration}
-import net.liftweb.json.JsonAST.{JArray, JInt, JValue}
 
 class ConfigurationTest extends Spec with MustMatchers {
   describe("a configuration file") {
@@ -40,10 +39,10 @@ class ConfigurationTest extends Spec with MustMatchers {
     }
 
     it("has maps of complicated items") {
-      config("parent.child.doubly-mapped").asMap[JValue] must equal(Map[String, JValue](
-        "1" -> JArray(List(JInt(1), JInt(2), JInt(3))),
-        "2" -> JArray(List(JInt(2), JInt(3), JInt(4))),
-        "3" -> JArray(List(JInt(3), JInt(4), JInt(5)))
+      config("parent.child.doubly-mapped").asMap[List[Int]] must equal(Map(
+        "1" -> List(1, 2, 3),
+        "2" -> List(2, 3, 4),
+        "3" -> List(3, 4, 5)
       ))
     }
   }
