@@ -52,7 +52,7 @@ class Configuration(src: Source) {
      * Returns the value as a instance of List[A], or if the value is not a JSON
      * array, an empty list.
      */
-    def asList[A](implicit mf: Manifest[A]) = value match {
+    def asList[A](implicit mf: Manifest[A]): List[A] = value match {
       case JField(_, JArray(list)) => list.map { _.extract[A](DefaultFormats, mf) }
       case other => List()
     }
@@ -61,9 +61,19 @@ class Configuration(src: Source) {
      * Returns the value as an instance of Map[String, A], or if the value is
      * not a simple JSON object, an empty map.
      */
-    def asMap[A](implicit mf: Manifest[A]) = value match {
+    def asMap[A](implicit mf: Manifest[A]): Map[String, A] = value match {
       case JField(_, o: JObject) =>
-        o.obj.map { f => f.name -> f.value.extract[A](DefaultFormats, mf) }.toMap
+        if (mf.erasure == classOf[List[_]]) {
+          o.obj.map { f =>
+            val s = f.value match {
+              case JArray(l) => l.map { _.extract(DefaultFormats, mf.typeArguments.head) }.toList
+              case _ => Nil
+            }
+            f.name -> s.asInstanceOf[A]
+          }.toMap
+        } else {
+          o.obj.map { f => f.name -> f.value.extract[A](DefaultFormats, mf) }.toMap
+        }
       case other => Map()
     }
   }

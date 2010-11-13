@@ -12,7 +12,7 @@ Requirements
 ------------
 
 * Java SE 6
-* Scala 2.8.0
+* Scala 2.8.0 or 2.8.1
 
 
 Why JSON?
@@ -30,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.0.6" withSources()
+    val fig = "com.codahale" %% "fig" % "1.0.7" withSources()
 
 **Second**, write your config file:
     
@@ -46,6 +46,10 @@ How To Use
         "resource": {
           "name": "Contacts",
           "uri": "/contacts"
+        },
+        "more-numbers": {
+          "some": [1, 2, 3],
+          "more": [4, 5, 6]
         }
       }
     }
@@ -78,6 +82,10 @@ You can also create a new `Configuration` instance from a `Source` or an `InputS
     // Hell, even load a case class.
     case class ResourceConfig(name: String, uri: String)
     val resource = config("http.resource").as[ResourceConfig]
+    
+    // Defy type erasure for lists!
+    val numbers = config("http.more-numbers").asMap[List[Int]]
+
 
 License
 -------

@@ -37,5 +37,13 @@ class ConfigurationTest extends Spec with MustMatchers {
     it("has maps of items") {
       config("parent.child.mapped").asMap[Int] must equal(Map("1" -> 1, "2" -> 2, "3" -> 3))
     }
+
+    it("has maps of complicated items") {
+      config("parent.child.doubly-mapped").asMap[List[Int]] must equal(Map(
+        "1" -> List(1, 2, 3),
+        "2" -> List(2, 3, 4),
+        "3" -> List(3, 4, 5)
+      ))
+    }
   }
 }
