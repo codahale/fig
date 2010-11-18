@@ -78,7 +78,7 @@ class Configuration(src: Source) {
     }
   }
 
-  private val json = JsonParser.parse(src.mkString.replaceAll("""(^//.*|[\s]+//.*)""", ""))
+  private val json = try { JsonParser.parse(src.mkString.replaceAll("""(^//.*|[\s]+//.*)""", "")) } finally { src.close }
 
   def this(filename: String) = this (Source.fromFile(new File(filename)))
 
