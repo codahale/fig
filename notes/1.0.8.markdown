@@ -1,0 +1,3 @@
+Fix to resource management:
+
+* `Source` is now closed after it is consumed creating the JSON
