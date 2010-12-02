@@ -15,11 +15,21 @@ class Fig(info: ProjectInfo) extends DefaultProject(info)
    * Publish via rsync.
    */
   def rsyncRepo = "codahale.com:/home/codahale/repo.codahale.com"
-  
+
+  /**
+   * Repos
+   */
+  val codasRepo = "codahale.com" at "http://repo.codahale.com/"
+
   /**
    * Dependencies
    */
   val liftJson = "net.liftweb" % "lift-json_2.8.0" % "2.2-M1" withSources() intransitive()
   val paranamer = "com.thoughtworks.paranamer" % "paranamer" % "2.2" withSources() intransitive()
-  val scalaTest = "org.scalatest" % "scalatest" % "1.2" % "test" withSources() intransitive()
+
+  /**
+   * Test Dependencies
+   */
+  val specs = "org.scala-tools.testing" %% "specs" % "1.6.6" % "test" withSources ()
+  val simplespec = "com.codahale" %% "simplespec" % "0.2.0" % "test" withSources ()
 }
