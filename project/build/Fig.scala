@@ -1,9 +1,14 @@
-class Fig(info: sbt.ProjectInfo) extends sbt.DefaultProject(info) with posterous.Publish with rsync.RsyncPublishing {
+import sbt._
+
+class Fig(info: ProjectInfo) extends DefaultProject(info)
+                                     with IdeaProject
+                                     with posterous.Publish
+                                     with rsync.RsyncPublishing {
   /**
    * Publish the source as well as the class files.
    */
   override def packageSrcJar= defaultJarPath("-sources.jar")
-  val sourceArtifact = sbt.Artifact(artifactID, "src", "jar", Some("sources"), Nil, None)
+  val sourceArtifact = Artifact(artifactID, "src", "jar", Some("sources"), Nil, None)
   override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
 
   /**
