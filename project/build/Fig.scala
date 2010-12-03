@@ -29,7 +29,6 @@ class Fig(info: ProjectInfo) extends DefaultProject(info)
   val jacksonCore = "org.codehaus.jackson" % "jackson-core-asl" % jacksonVersion withSources() intransitive()
   val jacksonMapper = "org.codehaus.jackson" % "jackson-mapper-asl" % jacksonVersion withSources() intransitive()
   val paranamer = "com.thoughtworks.paranamer" % "paranamer" % "2.3" withSources() intransitive()
-  val liftJson = "net.liftweb" % "lift-json_2.8.0" % "2.2-M1" withSources() intransitive()
 
   /**
    * Test Dependencies
