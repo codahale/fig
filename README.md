@@ -4,7 +4,7 @@ Fig
 *You probably don't need another data format, right?*
 
 Fig is a very small Scala library which makes it easy to read data out of
-JSON-based configuration files, with full support for C-style line comments. 
+JSON-based configuration files, with full support for Javascript-style comments. 
 (We're not barbarians here.)
 
 
