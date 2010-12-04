@@ -1,12 +1,12 @@
 {
-    // Config allows you to use C-style line comments.
+    /* Config allows you to use C-style comments.
+     * This, for example, is a block comment.
+     */
     "parent": { // Comments can terminate a line, too.
         "child": {
-            // But double-slashes in a string aren't comments, so don't mess with them.
             "url": "http://example.com",
-            // Double-slashes which are preceded by a space are complicated, so
-            // your best bet is to just escape 'em.
-            "splody-string": "An-a one an-a two an-a \/\/ AUGH DAMNIT",
+            // We don't care about comments inside string literals.
+            "splody-string": "An-a one an-a two an-a // /*wah*/ AUGH DAMNIT",
             "count": 100,
             "names": ["One", "Two", "Three"],
             "mapped": {
