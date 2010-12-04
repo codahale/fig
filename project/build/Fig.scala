@@ -2,19 +2,21 @@ import sbt._
 
 class Fig(info: ProjectInfo) extends DefaultProject(info)
                                      with IdeaProject
-                                     with posterous.Publish
-                                     with rsync.RsyncPublishing {
+                                     with posterous.Publish {
   /**
    * Publish the source as well as the class files.
    */
-  override def packageSrcJar= defaultJarPath("-sources.jar")
-  val sourceArtifact = Artifact(artifactID, "src", "jar", Some("sources"), Nil, None)
+  override def packageSrcJar = defaultJarPath("-sources.jar")
+  val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
 
   /**
-   * Publish via rsync.
+   * Publish via Ivy.
    */
-  def rsyncRepo = "codahale.com:/home/codahale/repo.codahale.com"
+  lazy val publishTo = Resolver.sftp("Personal Repo",
+                                     "codahale.com",
+                                     "/home/codahale/repo.codahale.com/") as ("codahale")
+  override def managedStyle = ManagedStyle.Maven
 
   /**
    * Repos
