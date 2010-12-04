@@ -1,20 +1,40 @@
-class Fig(info: sbt.ProjectInfo) extends sbt.DefaultProject(info) with posterous.Publish with rsync.RsyncPublishing {
+import sbt._
+
+class Fig(info: ProjectInfo) extends DefaultProject(info)
+                                     with IdeaProject
+                                     with posterous.Publish {
   /**
    * Publish the source as well as the class files.
    */
-  override def packageSrcJar= defaultJarPath("-sources.jar")
-  val sourceArtifact = sbt.Artifact(artifactID, "src", "jar", Some("sources"), Nil, None)
+  override def packageSrcJar = defaultJarPath("-sources.jar")
+  val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
 
   /**
-   * Publish via rsync.
+   * Publish via Ivy.
    */
-  def rsyncRepo = "codahale.com:/home/codahale/repo.codahale.com"
-  
+  lazy val publishTo = Resolver.sftp("Personal Repo",
+                                     "codahale.com",
+                                     "/home/codahale/repo.codahale.com/") as ("codahale")
+  override def managedStyle = ManagedStyle.Maven
+
+  /**
+   * Repos
+   */
+  val codasRepo = "codahale.com" at "http://repo.codahale.com/"
+
   /**
    * Dependencies
    */
-  val liftJson = "net.liftweb" % "lift-json_2.8.0" % "2.2-M1" withSources() intransitive()
-  val paranamer = "com.thoughtworks.paranamer" % "paranamer" % "2.2" withSources() intransitive()
-  val scalaTest = "org.scalatest" % "scalatest" % "1.2" % "test" withSources() intransitive()
+  val jerkson = "com.codahale" %% "jerkson" % "0.1.0" withSources() intransitive()
+  val jacksonVersion = "1.6.2"
+  val jacksonCore = "org.codehaus.jackson" % "jackson-core-asl" % jacksonVersion withSources() intransitive()
+  val jacksonMapper = "org.codehaus.jackson" % "jackson-mapper-asl" % jacksonVersion withSources() intransitive()
+  val paranamer = "com.thoughtworks.paranamer" % "paranamer" % "2.3" withSources() intransitive()
+
+  /**
+   * Test Dependencies
+   */
+  val specs = "org.scala-tools.testing" %% "specs" % "1.6.6" % "test" withSources()
+  val simplespec = "com.codahale" %% "simplespec" % "0.2.0" % "test" withSources()
 }

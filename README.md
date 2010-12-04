@@ -4,15 +4,16 @@ Fig
 *You probably don't need another data format, right?*
 
 Fig is a very small Scala library which makes it easy to read data out of
-JSON-based configuration files, with limited support for C-style line comments.
+JSON-based configuration files, with full support for Javascript-style comments. 
 (We're not barbarians here.)
 
 
 Requirements
 ------------
 
-* Java SE 6
-* Scala 2.8.0 or 2.8.1
+* Scala 2.8.1
+* Jackson 1.6.2
+* Paranamer 2.3
 
 
 Why JSON?
@@ -30,28 +31,33 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.0.7" withSources()
+    val fig = "com.codahale" %% "fig" % "1.1.0" withSources()
 
 **Second**, write your config file:
     
     {
-      // Fig will strip C-style line comments from the JSON.
-      "http": {
-        "port": 8080, // Also works for line endings.
-        "uri": "http://example.com",
-        // But you'll need to escape double-slashes if there's whitespace in
-        // front of them.
-        "server": "one \/\/ two",
-        "numbers": [1, 2, 3],
-        "resource": {
-          "name": "Contacts",
-          "uri": "/contacts"
-        },
-        "more-numbers": {
-          "some": [1, 2, 3],
-          "more": [4, 5, 6]
+        /* Config allows you to use C-style comments.
+         * This, for example, is a block comment.
+         */
+        "parent": { // Comments can terminate a line, too.
+            "child": {
+                "url": "http://example.com",
+                // We don't care about comments inside string literals.
+                "splody-string": "An-a one an-a two an-a // /*wah*/ YAY",
+                "count": 100,
+                "names": ["One", "Two", "Three"],
+                "mapped": {
+                    "1": 1,
+                    "2": 2,
+                    "3": 3
+                },
+                "doubly-mapped": {
+                    "1": [1, 2, 3],
+                    "2": [2, 3, 4],
+                    "3": [3, 4, 5]
+                }
+            }
         }
-      }
     }
 
 **Third**, load your config file:
