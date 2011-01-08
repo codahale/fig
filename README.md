@@ -12,8 +12,7 @@ Requirements
 ------------
 
 * Scala 2.8.1
-* Jackson 1.6.2
-* Paranamer 2.3
+* Jerkson 0.1.2
 
 
 Why JSON?
@@ -31,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.1.0" withSources()
+    val fig = "com.codahale" %% "fig" % "1.1.1" withSources()
 
 **Second**, write your config file:
     

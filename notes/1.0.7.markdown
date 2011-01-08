@@ -1,4 +1,0 @@
-Cross-building and a small new feature:
-
-* Now being built for Scala 2.8.1 as well as 2.8.0
-* `asMap` can now extract `List[A]` and actually provide instances of `A`
