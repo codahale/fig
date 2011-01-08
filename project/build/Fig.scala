@@ -2,7 +2,6 @@ import sbt._
 
 class Fig(info: ProjectInfo) extends DefaultProject(info)
                                      with IdeaProject
-                                     with posterous.Publish
                                      with maven.MavenDependencies {
   /**
    * Publish the source as well as the class files.

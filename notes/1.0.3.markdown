@@ -1,3 +1,0 @@
-Moving to Scalatest 1.2 and Lift 2.1-M1:
-
-* Using actual releases of libraries! So much fun!
