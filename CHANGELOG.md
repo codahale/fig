@@ -1,4 +1,4 @@
-v1.1.1-SNAPSHOT: TBD
+v1.1.1: Jan 07 2011
 ===================
 
 * Upgraded to jerkson 0.1.2
