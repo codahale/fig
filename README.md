@@ -12,8 +12,7 @@ Requirements
 ------------
 
 * Scala 2.8.1
-* Jackson 1.6.2
-* Paranamer 2.3
+* Jerkson 0.1.2
 
 
 Why JSON?
