@@ -1,6 +1,6 @@
 import sbt._
 
-class Fig(info: ProjectInfo) extends DefaultProject(info)
+class FigProject(info: ProjectInfo) extends DefaultProject(info)
                                      with IdeaProject
                                      with maven.MavenDependencies {
   /**
