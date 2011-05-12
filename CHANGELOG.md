@@ -1,3 +1,9 @@
+v1.1.2: May 12 2011
+===================
+
+* Upgraded to jerkson 0.2.0
+* Cross-building for Scala 2.9.0
+
 v1.1.1: Jan 07 2011
 ===================
 
