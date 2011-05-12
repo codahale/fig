@@ -11,8 +11,8 @@ JSON-based configuration files, with full support for Javascript-style comments.
 Requirements
 ------------
 
-* Scala 2.8.1
-* Jerkson 0.1.2
+* Scala 2.8.1 or 2.9.0
+* Jerkson 0.2.0
 
 
 Why JSON?
@@ -30,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.1.1" withSources()
+    val fig = "com.codahale" %% "fig" % "1.1.2"
 
 **Second**, write your config file:
     

@@ -1,6 +1,6 @@
 import sbt._
 
-class Fig(info: ProjectInfo) extends DefaultProject(info)
+class FigProject(info: ProjectInfo) extends DefaultProject(info)
                                      with IdeaProject
                                      with maven.MavenDependencies {
   /**
@@ -25,10 +25,12 @@ class Fig(info: ProjectInfo) extends DefaultProject(info)
   /**
    * Dependencies
    */
-  val jerkson = "com.codahale" %% "jerkson" % "0.1.2"
+  val jerkson = "com.codahale" %% "jerkson" % "0.2.0"
 
   /**
    * Test Dependencies
    */
-  val simplespec = "com.codahale" %% "simplespec" % "0.2.0" % "test" withSources()
+  val simplespec = "com.codahale" %% "simplespec" % "0.3.2" % "test"
+  def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
+  override def testFrameworks = super.testFrameworks ++ Seq(specs2Framework)
 }
