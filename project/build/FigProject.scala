@@ -25,7 +25,7 @@ class FigProject(info: ProjectInfo) extends DefaultProject(info)
   /**
    * Dependencies
    */
-  val jerkson = "com.codahale" %% "jerkson" % "0.2.0"
+  val jerkson = "com.codahale" %% "jerkson" % "0.2.1"
 
   /**
    * Test Dependencies
