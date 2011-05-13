@@ -12,7 +12,7 @@ Requirements
 ------------
 
 * Scala 2.8.1 or 2.9.0
-* Jerkson 0.2.0
+* Jerkson 0.2.1
 
 
 Why JSON?
@@ -30,7 +30,7 @@ How To Use
 **First**, specify Fig as a dependency:
     
     val codaRepo = "Coda Hale's Repository" at "http://repo.codahale.com/"
-    val fig = "com.codahale" %% "fig" % "1.1.2"
+    val fig = "com.codahale" %% "fig" % "1.1.3"
 
 **Second**, write your config file:
     
