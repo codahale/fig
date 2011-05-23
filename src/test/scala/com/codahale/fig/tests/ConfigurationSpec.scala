@@ -43,5 +43,10 @@ object ConfigurationSpec extends Spec {
                             "2" -> List(2, 3, 4),
                             "3" -> List(3, 4, 5)))
     }
+    def `should be able to parse case classes with booleans` = {
+      config("simpleCaseClass").as[SimpleCase].withBool must beTrue
+    }
   }
 }
+
+case class SimpleCase(withBool: Boolean)
