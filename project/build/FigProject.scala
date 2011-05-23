@@ -33,7 +33,7 @@ class FigProject(info: ProjectInfo) extends DefaultProject(info)
   /**
    * Test Dependencies
    */
-  val simplespec = "com.codahale" %% "simplespec" % "0.3.2" % "test"
+  val simplespec = "com.codahale" %% "simplespec" % "0.3.3" % "test"
   def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
   override def testFrameworks = super.testFrameworks ++ Seq(specs2Framework)
 }
