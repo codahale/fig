@@ -10,6 +10,9 @@ class FigProject(info: ProjectInfo) extends DefaultProject(info)
   val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
 
+  override def compileOptions = super.compileOptions ++
+          Seq(Deprecation, ExplainTypes, Unchecked, Optimise)
+
   /**
    * Publish to my repo.
    */
@@ -25,12 +28,12 @@ class FigProject(info: ProjectInfo) extends DefaultProject(info)
   /**
    * Dependencies
    */
-  val jerkson = "com.codahale" %% "jerkson" % "0.2.1"
+  val jerkson = "com.codahale" %% "jerkson" % "0.2.2"
 
   /**
    * Test Dependencies
    */
-  val simplespec = "com.codahale" %% "simplespec" % "0.3.2" % "test"
+  val simplespec = "com.codahale" %% "simplespec" % "0.3.3" % "test"
   def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
   override def testFrameworks = super.testFrameworks ++ Seq(specs2Framework)
 }
