@@ -10,6 +10,9 @@ class FigProject(info: ProjectInfo) extends DefaultProject(info)
   val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++ Seq(packageSrc)
 
+  override def compileOptions = super.compileOptions ++
+          Seq(Deprecation, ExplainTypes, Unchecked, Optimise)
+
   /**
    * Publish to my repo.
    */
