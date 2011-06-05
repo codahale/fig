@@ -3,7 +3,7 @@ package com.codahale.fig.tests
 import com.codahale.simplespec.Spec
 import com.codahale.fig.{ConfigurationException, Configuration}
 
-object ConfigurationSpec extends Spec {
+class ConfigurationSpec extends Spec {
   class `A configuration file` {
     private val config = new Configuration("src/test/resources/example.json")
 
