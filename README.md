@@ -12,7 +12,7 @@ Requirements
 ------------
 
 * Scala 2.8.1 or 2.9.0-1
-* Jerkson 0.3.2
+* Jerkson 0.4.0
 
 
 Why JSON?
@@ -41,7 +41,7 @@ How To Use
   <dependency>
     <groupId>com.codahale</groupId>
     <artifactId>fig_${scala.version}</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
   </dependency>
 </dependencies>
 ```
