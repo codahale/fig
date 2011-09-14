@@ -1,3 +1,9 @@
+v1.1.7: Sep 13 2011
+===================
+
+* Upgraded to jerkson 0.4.1.
+* Added support for Scala 2.9.1.
+
 v1.1.6: Aug 11 2011
 ===================
 

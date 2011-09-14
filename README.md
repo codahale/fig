@@ -11,8 +11,8 @@ JSON-based configuration files, with full support for Javascript-style comments.
 Requirements
 ------------
 
-* Scala 2.8.1 or 2.9.0-1
-* Jerkson 0.4.0
+* Scala 2.8.1 or 2.9.0-1 or 2.9.1
+* Jerkson 0.4.1
 
 
 Why JSON?
@@ -41,7 +41,7 @@ How To Use
   <dependency>
     <groupId>com.codahale</groupId>
     <artifactId>fig_${scala.version}</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
   </dependency>
 </dependencies>
 ```
