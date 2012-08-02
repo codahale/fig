@@ -46,5 +46,12 @@ class ConfigurationSpec extends Spec {
             "3" -> List(3, 4, 5))
       ))
     }
+
+    @Test def `is recursive` = {
+      config("parent")("child")("count").as[Int].must(be(100))
+      config("parent.child")("count").as[Int].must(be(100))
+      config("parent")("child.count").as[Int].must(be(100))
+      config("parent.child.count").as[Int].must(be(100))
+    }
   }
 }
