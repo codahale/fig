@@ -70,10 +70,6 @@ class Configuration private(root: JsonNode) {
     } else as[Map[String, A]]
   }
 
-  //def parse[A]( input: File )( implicit mf: Manifest[A] ) : A = {
-  //   parse[A](factory.createJsonParser(input), mf)
-  //}
-
   /**
    * Read a configuration file.
    */
