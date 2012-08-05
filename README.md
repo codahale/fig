@@ -12,7 +12,8 @@ Requirements
 ------------
 
 * Scala 2.8.1 or 2.9.0-1 or 2.9.1
-* Jerkson 0.6.0
+* Jerkson 0.6.0-SNAPSHOT
+* SimpleSpec 0.5.1
 
 Why JSON?
 ---------
