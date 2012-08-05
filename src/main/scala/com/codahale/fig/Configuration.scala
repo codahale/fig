@@ -75,15 +75,10 @@ class Configuration private(root: JsonNode) {
   //}
 
   /**
-   * Read a configuration file. - auxiliary constructor
+   * Read a configuration file.
    */
-  def this(filename: String) = this( parse[JsonNode]( new File(filename) ))
-
-  def test( filename: String) = {
-    val f = new File(filename)
-    
-  }
-  
+  def this(filename: String) = this(parse[JsonNode](new File(filename)))
+ 
   /**
    * Read configuration from an input stream.
    */
