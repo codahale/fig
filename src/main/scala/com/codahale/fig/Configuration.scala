@@ -3,9 +3,11 @@ package com.codahale.fig
 import annotation.tailrec
 import io.Source
 import java.io.{File, InputStream}
+
 import com.codahale.jerkson.Json._
-import org.codehaus.jackson.JsonNode
-import org.codehaus.jackson.node.NullNode
+
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.NullNode
 
 /**
  * An exception class thrown when there is a configuration error.
@@ -72,16 +74,16 @@ class Configuration private(root: JsonNode) {
    * Read a configuration file.
    */
   def this(filename: String) = this(parse[JsonNode](new File(filename)))
-
+ 
   /**
    * Read configuration from an input stream.
    */
-  def this(stream: InputStream) = this(parse[JsonNode](stream))
+  def this(stream: InputStream) = this( parse[JsonNode](stream) )
 
   /**
    * Read configuration from a source.a
    */
-  def this(source: Source) = this(parse[JsonNode](source))
+  def this(source: Source) = this( parse[JsonNode](source) )
 
   /**
    * Given a dot-notation JSON path (e.g., "parent.child.fieldname"), returns

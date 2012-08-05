@@ -12,8 +12,8 @@ Requirements
 ------------
 
 * Scala 2.8.1 or 2.9.0-1 or 2.9.1
-* Jerkson 0.4.1
-
+* Jerkson 0.6.0-SNAPSHOT
+* SimpleSpec 0.5.1
 
 Why JSON?
 ---------
@@ -41,7 +41,7 @@ How To Use
   <dependency>
     <groupId>com.codahale</groupId>
     <artifactId>fig_${scala.version}</artifactId>
-    <version>1.1.7</version>
+    <version>1.1.8</version>
   </dependency>
 </dependencies>
 ```
